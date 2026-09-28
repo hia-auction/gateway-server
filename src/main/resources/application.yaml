@@ -5,6 +5,16 @@ spring:
   application:
     name: gateway-server
 
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/v1/users,/api/v1/users/**,/api/v1/sellers,/api/v1/sellers/**
+
 eureka:
   client:
     service-url:
